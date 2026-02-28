@@ -3,130 +3,84 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Salt & Light Wellness — Review Tool</title>
+  <title>Salt & Light Wellness — Review Requests</title>
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:#f0f4ff; color:#1a1a2e; }
-    .header { background: linear-gradient(135deg, #1a1a2e, #2d4a8a); color:white; padding:32px 20px; text-align:center; }
-    .header h1 { font-size:26px; font-weight:800; margin-bottom:6px; }
-    .header p { opacity:0.8; font-size:15px; }
-    .container { max-width:700px; margin:32px auto; padding:0 20px; }
-    .card { background:white; border-radius:16px; padding:32px; margin-bottom:24px; box-shadow:0 4px 20px rgba(0,0,0,0.08); }
-    .card h2 { font-size:20px; font-weight:700; margin-bottom:8px; }
-    .card p { color:#666; font-size:15px; margin-bottom:20px; line-height:1.6; }
-    .review-link-box { background:#f0f4ff; border:2px solid #c7d2fe; border-radius:10px; padding:16px; margin-bottom:20px; display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
-    .review-link-box a { color:#2d4a8a; font-weight:700; word-break:break-all; font-size:14px; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:#f0f4ff; min-height:100vh; }
+    .header { background: linear-gradient(135deg, #1a1a2e, #2d4a8a); color:white; padding:28px 20px; text-align:center; }
+    .header h1 { font-size:24px; font-weight:800; margin-bottom:4px; }
+    .header p { opacity:0.8; font-size:14px; }
+    .container { max-width:480px; margin:32px auto; padding:0 20px; }
+    .card { background:white; border-radius:16px; padding:28px; box-shadow:0 4px 20px rgba(0,0,0,0.08); }
+    .stats { display:flex; justify-content:center; gap:32px; margin-bottom:28px; }
+    .stat { text-align:center; }
+    .stat .num { font-size:36px; font-weight:800; color:#2d4a8a; }
+    .stat .lbl { font-size:12px; color:#888; margin-top:2px; }
     label { display:block; font-weight:600; font-size:14px; margin-bottom:6px; color:#333; }
-    input, textarea { width:100%; padding:12px 16px; border:2px solid #e9ecef; border-radius:8px; font-size:16px; font-family:inherit; margin-bottom:16px; }
-    input:focus, textarea:focus { outline:none; border-color:#2d4a8a; }
-    .btn { background:#2d4a8a; color:white; border:none; padding:14px 24px; border-radius:8px; font-size:16px; font-weight:700; cursor:pointer; width:100%; }
+    input { width:100%; padding:14px 16px; border:2px solid #e9ecef; border-radius:10px; font-size:16px; font-family:inherit; margin-bottom:16px; }
+    input:focus { outline:none; border-color:#2d4a8a; }
+    .btn { width:100%; background:#2d4a8a; color:white; border:none; padding:16px; border-radius:10px; font-size:18px; font-weight:700; cursor:pointer; }
     .btn:hover { background:#1a3366; }
-    .btn-sms { background:#25D366; }
-    .btn-sms:hover { background:#1da851; }
-    .templates { display:grid; gap:12px; }
-    .template { background:#f8f9fa; border:1px solid #e9ecef; border-radius:8px; padding:16px; cursor:pointer; transition:border-color 0.2s; }
-    .template:hover { border-color:#2d4a8a; }
-    .template p { font-size:14px; color:#444; margin:0; line-height:1.6; white-space:pre-wrap; }
-    .template-label { font-size:12px; font-weight:700; color:#2d4a8a; margin-bottom:6px; text-transform:uppercase; }
-    .copy-btn { background:#2d4a8a; color:white; border:none; padding:6px 14px; border-radius:6px; font-size:12px; font-weight:700; cursor:pointer; margin-top:10px; }
-    .stats { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:24px; }
-    .stat { background:white; border-radius:12px; padding:20px; text-align:center; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
-    .stat .num { font-size:32px; font-weight:800; color:#2d4a8a; }
-    .stat .lbl { font-size:13px; color:#666; margin-top:4px; }
-    .success { display:none; background:#d4edda; color:#155724; padding:16px; border-radius:8px; text-align:center; font-weight:600; margin-top:12px; }
+    .note { text-align:center; font-size:12px; color:#aaa; margin-top:12px; }
+    .success { display:none; background:#d4edda; color:#155724; padding:16px; border-radius:10px; text-align:center; font-weight:600; margin-top:16px; }
+    .divider { border:none; border-top:1px solid #f0f0f0; margin:20px 0; }
+    .direct-link { text-align:center; }
+    .direct-link a { color:#2d4a8a; font-weight:600; font-size:14px; }
   </style>
 </head>
 <body>
 
 <div class="header">
   <h1>🌟 Salt & Light Wellness</h1>
-  <p>Google Review Request Tool — Send review requests to clients in seconds</p>
+  <p>Send a review request in seconds</p>
 </div>
 
 <div class="container">
-
-  <div class="stats">
-    <div class="stat"><div class="num">11</div><div class="lbl">Current Reviews</div></div>
-    <div class="stat"><div class="num">5.0</div><div class="lbl">Star Rating ⭐</div></div>
-    <div class="stat"><div class="num">19</div><div class="lbl">Reviews Needed for Top 3</div></div>
-  </div>
-
-  <!-- Direct review link -->
   <div class="card">
-    <h2>⭐ Your Google Review Link</h2>
-    <p>Share this link directly with clients — it opens straight to the review form.</p>
-    <div class="review-link-box">
-      <a href="https://g.page/r/CTKGSBpOmTIpEBM/review" target="_blank" id="reviewLink">
-        https://g.page/r/CTKGSBpOmTIpEBM/review
-      </a>
-      <button onclick="copyLink()" style="background:#2d4a8a;color:white;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-weight:700;white-space:nowrap;">Copy Link</button>
+
+    <div class="stats">
+      <div class="stat"><div class="num">11</div><div class="lbl">Reviews</div></div>
+      <div class="stat"><div class="num">5.0 ⭐</div><div class="lbl">Rating</div></div>
+      <div class="stat"><div class="num">30</div><div class="lbl">Goal</div></div>
     </div>
-    <p style="font-size:13px;color:#888;">💡 Add this link to your email signature, booking confirmations, and Instagram bio.</p>
-  </div>
 
-  <!-- SMS Templates -->
-  <div class="card">
-    <h2>📱 Ready-to-Send Message Templates</h2>
-    <p>Click any template to copy it, then paste into your phone to text clients.</p>
-    <div class="templates">
-      <div class="template">
-        <div class="template-label">After Session — Friendly</div>
-        <p id="t1">Hi [Name]! It was so wonderful having you at Salt & Light today 🌟 If you enjoyed your session, would you mind leaving us a quick Google review? It means the world to us and helps other people find us! Here's the link: https://g.page/r/CTKGSBpOmTIpEBM/review Thank you so much! 🙏</p>
-        <button class="copy-btn" onclick="copyTemplate('t1')">📋 Copy</button>
-      </div>
-      <div class="template">
-        <div class="template-label">Short & Sweet</div>
-        <p id="t2">Hey [Name]! Hope you're feeling amazing after your session 💫 Would you leave us a Google review when you get a chance? It really helps us grow! [link]: https://g.page/r/CTKGSBpOmTIpEBM/review</p>
-        <button class="copy-btn" onclick="copyTemplate('t2')">📋 Copy</button>
-      </div>
-      <div class="template">
-        <div class="template-label">Follow Up (2-3 days later)</div>
-        <p id="t3">Hi [Name]! Checking in — how are you feeling since your visit? 🌿 If you have a moment, a Google review would help so many people discover the healing benefits we offer. Takes less than a minute! https://g.page/r/CTKGSBpOmTIpEBM/review Blessings! 🙏</p>
-        <button class="copy-btn" onclick="copyTemplate('t3')">📋 Copy</button>
-      </div>
-      <div class="template">
-        <div class="template-label">For Regulars</div>
-        <p id="t4">Hey [Name]! You've been such a loyal client and we're so grateful for you 💛 Would you be willing to share your experience with us on Google? Your words could help someone else start their wellness journey! https://g.page/r/CTKGSBpOmTIpEBM/review</p>
-        <button class="copy-btn" onclick="copyTemplate('t4')">📋 Copy</button>
-      </div>
+    <label>Customer Name</label>
+    <input type="text" id="name" placeholder="Sarah" autocomplete="off">
+
+    <label>Customer Phone Number</label>
+    <input type="tel" id="phone" placeholder="(207) 555-0100" autocomplete="off">
+
+    <button class="btn" onclick="sendRequest()">📱 Send Review Request</button>
+
+    <div class="success" id="successMsg">✅ Opening Messages app — just hit send!</div>
+
+    <p class="note">Opens your Messages app with the text pre-filled. Just hit send.</p>
+
+    <hr class="divider">
+
+    <div class="direct-link">
+      <a href="https://g.page/r/CTKGSBpOmTIpEBM/review" target="_blank">⭐ Open Review Form Directly</a>
     </div>
-  </div>
 
-  <!-- Custom sender -->
-  <div class="card">
-    <h2>✏️ Send Custom Request</h2>
-    <p>Personalize and send via SMS link (opens your default texting app).</p>
-    <label>Client Name</label>
-    <input type="text" id="clientName" placeholder="Sarah">
-    <label>Custom Message (optional)</label>
-    <textarea id="customMsg" rows="4" placeholder="Leave blank to use default template..."></textarea>
-    <button class="btn btn-sms" onclick="sendSMS()">📱 Open in Messages App</button>
   </div>
-
 </div>
 
 <script>
   const REVIEW_URL = 'https://g.page/r/CTKGSBpOmTIpEBM/review';
 
-  function copyLink() {
-    navigator.clipboard.writeText(REVIEW_URL);
-    event.target.textContent = '✅ Copied!';
-    setTimeout(() => event.target.textContent = 'Copy Link', 2000);
+  function sendRequest() {
+    const name = document.getElementById('name').value.trim() || 'there';
+    const phone = document.getElementById('phone').value.trim().replace(/\D/g,'');
+    if (!phone) { alert('Please enter a phone number.'); return; }
+    const msg = 'Hi ' + name + '! Thank you so much for visiting Salt & Light Wellness 🌟 We\'d love it if you could leave us a quick Google review — it means the world to us! Here\'s the link: ' + REVIEW_URL + ' Blessings! 🙏';
+    window.location.href = 'sms:+1' + phone + '?body=' + encodeURIComponent(msg);
+    document.getElementById('successMsg').style.display = 'block';
+    document.getElementById('name').value = '';
+    document.getElementById('phone').value = '';
+    setTimeout(() => document.getElementById('successMsg').style.display = 'none', 4000);
   }
 
-  function copyTemplate(id) {
-    const text = document.getElementById(id).textContent;
-    navigator.clipboard.writeText(text);
-    event.target.textContent = '✅ Copied!';
-    setTimeout(() => event.target.textContent = '📋 Copy', 2000);
-  }
-
-  function sendSMS() {
-    const name = document.getElementById('clientName').value || 'there';
-    const custom = document.getElementById('customMsg').value;
-    const msg = custom || `Hi ${name}! It was so wonderful having you at Salt & Light today 🌟 Would you mind leaving us a quick Google review? It means the world to us! ${REVIEW_URL} Thank you! 🙏`;
-    window.location.href = `sms:?body=${encodeURIComponent(msg)}`;
-  }
+  document.addEventListener('keypress', e => { if (e.key === 'Enter') sendRequest(); });
 </script>
 
 </body>
